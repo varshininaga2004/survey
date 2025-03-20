@@ -22,6 +22,17 @@
                 </div>
                 <ul class="nav navbar-nav">
                     <li><a class="nav-link active" href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'result' %}"><span class="glyphicon glyphicon-stats"></span> Result</a></li>
+                    {% endif %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                    <li><a href=""><span class="glyphicon glyphicon-user"></span> Hi, Admin</a></li>
+                    <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>

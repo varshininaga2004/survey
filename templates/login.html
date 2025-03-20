@@ -1,0 +1,24 @@
+{% extends 'background.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<div class="app-content">
+    <div class="account-module">
+        <form action="login" method="post">
+            {% csrf_token %}
+            <h3>Admin Login</h3>
+            <input type="text" placeholder="Username" name="username" required>
+            <input type="password" placeholder="Password" name="password" required>
+            <input type="submit" style="background-color: #f9a825;"><br/><br/>
+        </form>
+        <div>
+            {% for message in messages %}
+            <p class="alert-{{ message.tags }}" style="text-align:center;{% if message.tags == 'error' %}color: red;{% endif %}">{{message}}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home.apps.HomeConfig'
+    'surveyapp.apps.SurveyappConfig'
 ]
 
 MIDDLEWARE = [
@@ -52,6 +52,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'survey.urls'
+
+LOGIN_URL = '/login'
 
 TEMPLATES = [
     {
