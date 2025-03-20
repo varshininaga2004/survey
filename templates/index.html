@@ -1,11 +1,27 @@
 {% extends 'background.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Survey{% endblock %}
 
 {% block content %}
 
-<div class="app-content">
-    <h1>Hi, Varshini</h1>
+<div class="container">
+    <h2>Survey Form</h2>
+    <form method='post' action="{% url 'submit_survey' %}">
+        {% csrf_token %}
+        <div class="form-panel">
+            {% for question in questions %}
+            <div class="question" data-question-id="{{ question.id }}">
+                <p>{{ forloop.counter }}. {{ question.text }}</p>
+                <button type="button" class="option-btn" data-value="yes">Yes</button>
+                <button type="button" class="option-btn" data-value="no">No</button>
+                <button type="button" class="option-btn" data-value="not_interested">Not Interested</button>
+                <input type="hidden" name="question_{{ question.id }}" class="response-input">
+            </div>
+            <hr />
+            {% endfor %}
+        </div>
+        <button type="submit">Submit</button>
+    </form>
 </div>
 
 {% endblock %}

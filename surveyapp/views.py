@@ -1,11 +1,17 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
+from .models import Question, Result
 
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html')
+    questions = Question.objects.all()
+    return render(request, 'index.html', {'questions': questions})
+
+def submit_survey(request):
+    if request.method == 'POST':
+        pass
 
 def login(request):
     if request.method == "POST":
