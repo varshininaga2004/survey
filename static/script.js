@@ -38,6 +38,8 @@ $(document).ready(function() {
                     "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val()
                 },
                 success: function(response){
+                    $('.option-btn').removeClass('selected');
+                    $('#survey-form')[0].reset();
                     alert(response.message);
                 },
                 error: function(error) {
