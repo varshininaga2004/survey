@@ -6,7 +6,7 @@
 
 <div class="container">
     <h2>Survey Form</h2>
-    <form method='post' action="{% url 'submit_survey' %}">
+    <form id="survey-form" method="post">
         {% csrf_token %}
         <div class="form-panel">
             {% for question in questions %}
@@ -20,8 +20,12 @@
             <hr />
             {% endfor %}
         </div>
-        <button type="submit">Submit</button>
+        <button id="submit-survey" type="submit">Submit</button>
     </form>
 </div>
+
+<script>
+    const submitSurveyUrl = '{% url "submit_survey" %}';
+</script>
 
 {% endblock %}

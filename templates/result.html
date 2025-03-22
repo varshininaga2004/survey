@@ -1,11 +1,47 @@
 {% extends 'background.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Results{% endblock %}
 
 {% block content %}
 
-<div class="app-content">
-    <h1>Hi, Varshini result</h1>
+<h2 style="text-align: center; font-weight: bold;">Survey Results</h2>
+<div class="result-container">
+    {% for result in results %}
+    <div class="chart-container result-tile">
+        <h4>{{ result.question.text }}</h4>
+        <canvas id="chart-{{ result.question.id }}" width="200" height="200"></canvas>
+    </div>
+    {% endfor %}
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        const resultsData = JSON.parse("{{ results_data|escapejs }}");
+        resultsData.forEach(result => {
+            const ctx = document.getElementById(`chart-${result.question_id}`).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Yes', 'No', 'Not Interested'],
+                    datasets: [{
+                        label: 'Results',
+                        data: [result.yes_count, result.no_count, result.not_interested_count],
+                        backgroundColor: ['#4CAF50', '#F44336', '#FFC107']
+                    }]
+                },
+                options: {
+                    responsive: false,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {display: false}
+                    },
+                    scales: {
+                        x: {beginAtZero: true}
+                    }
+                }
+            })
+        })
+    })
+</script>
 
 {% endblock %}
