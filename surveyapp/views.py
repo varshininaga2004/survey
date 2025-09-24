@@ -6,7 +6,7 @@ import json
 from django.http import JsonResponse
 from django.utils.safestring import mark_safe
 
-# Create your views here.
+# Create your views here.vars
 
 def index(request):
     questions = Question.objects.all()
