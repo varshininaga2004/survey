@@ -6,7 +6,7 @@ import json
 from django.http import JsonResponse
 from django.utils.safestring import mark_safe
 
-
+# varshini
 def index(request):
     questions = Question.objects.all()
     return render(request, 'index.html', {'questions': questions})
